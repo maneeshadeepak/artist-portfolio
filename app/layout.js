@@ -3,11 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Maneesha Deepak – Artist Portfolio",
-  description: "Visual artist portfolio",
-};
-
 export default function RootLayout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -77,8 +72,8 @@ export default function RootLayout({ children }) {
               <li style={{ marginBottom: "12px" }}>
                 <Link
                   href="/artwork"
-                  style={{ textDecoration: "none", color: "#222" }}
                   onClick={() => setMenuOpen(false)}
+                  style={{ textDecoration: "none", color: "#222" }}
                 >
                   Artwork
                 </Link>
@@ -87,8 +82,8 @@ export default function RootLayout({ children }) {
               <li style={{ marginBottom: "12px" }}>
                 <Link
                   href="/#about"
-                  style={{ textDecoration: "none", color: "#222" }}
                   onClick={() => setMenuOpen(false)}
+                  style={{ textDecoration: "none", color: "#222" }}
                 >
                   About
                 </Link>
@@ -97,8 +92,8 @@ export default function RootLayout({ children }) {
               <li>
                 <Link
                   href="/#contact"
-                  style={{ textDecoration: "none", color: "#222" }}
                   onClick={() => setMenuOpen(false)}
+                  style={{ textDecoration: "none", color: "#222" }}
                 >
                   Contact
                 </Link>
