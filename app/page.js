@@ -1,119 +1,110 @@
 "use client";
 
 import { useState } from "react";
-0 24px",import Link from "next/link";
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            borderBottom: "1px solid #ddd",
-            position: "sticky",
-            top: 0,
-            background: "#f4f1ec",
-            zIndex: 20,
-          }}
-        >
-          <span style={{ fontWeight: 600 }}>Maneesha Deepak</span>
+import { artworks } from "../lib/artworks";
 
-          <button
-            onClick={() => setOpen(true)}
+export default function GalleryPage() {
+  const [current, setCurrent] = useState(null);
+
+  return (
+    <main style={{ padding: "80px 24px" }}>
+      <h1 style={{ textAlign: "center", marginBottom: 40 }}>
+        My Artwork
+      </h1>
+
+      {/* Tile Grid */}
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+          gap: 20,
+        }}
+      >
+        {artworks.map((art, index) => (
+          <img
+            key={index}
+            src={`/artworks/${art.file}`}
+            alt={art.title}
+            onClick={() => setCurrent(index)}
             style={{
-              fontSize: 28,
-              background: "none",
-              border: "none",
+              width: "100%",
               cursor: "pointer",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
             }}
-            aria-label="Menu"
-          >
-            ☰
-          </button>
-        </header>
+          />
+        ))}
+      </div>
 
-        {/* Slide‑in Menu */}
+      {/* Lightbox */}
+      {current !== null && (
         <div
           style={{
             position: "fixed",
-            top: 0,
-            right: 0,
-            height: "100vh",
-            width: 280,
-            background: "#eee",
-            padding: 24,
-            transform: open ? "translateX(0)" : "translateX(100%)",
-            transition: "transform 0.35s ease",
-            zIndex: 100,
+            inset: 0,
+            background: "rgba(0,0,0,0.85)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 200,
           }}
         >
-          <div style={{ textAlign: "right" }}>
-            <button
-              onClick={() => setOpen(false)}
-              style={{
-                fontSize: 24,
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              ✕
-            </button>
-          </div>
-
-          <nav style={{ marginTop: 40 }}>
-            <ul style={{ listStyle: "none", padding: 0 }}>
-              {[
-                { href: "/", label: "Home" },
-                { href: "/my-portfolio", label: "My Portfolio" },
-                { href: "#about", label: "About" },
-                { href: "#contact", label: "Contact" },
-              ].map((item) => (
-                <li key={item.label} style={{ marginBottom: 20 }}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    style={{ textDecoration: "none", color: "#222" }}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-
-        {/* Overlay */}
-        {open && (
-          <div
-            onClick={() => setOpen(false)}
+          <button
+            onClick={() => setCurrent(null)}
             style={{
-              position: "fixed",
-              inset: 0,
-              background: "rgba(0,0,0,0.25)",
-              zIndex: 50,
+              position: "absolute",
+              top: 20,
+              right: 20,
+              fontSize: 24,
+              background: "none",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
             }}
-          />
-        )}
+          >
+            ✕
+          </button>
 
-        {children}
-      </body>
-    </html>
+          <button
+            onClick={() =>
+              setCurrent((current - 1 + artworks.length) % artworks.length)
+            }
+            style={{
+              position: "absolute",
+              left: 20,
+              fontSize: 32,
+              background: "none",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            ‹
+          </button>
+
+          <img
+            src={`/artworks/${artworks[current].file}`}
+            alt={artworks[current].title}
+            style={{ maxHeight: "90vh", maxWidth: "90vw" }}
+          />
+
+          <button
+            onClick={() => setCurrent((current + 1) % artworks.length)}
+            style={{
+              position: "absolute",
+              right: 20,
+              fontSize: 32,
+              background: "none",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            ›
+          </button>
+        </div>
+      )}
+    </main>
   );
 }
-``
-
-export default function RootLayout({ children }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <html lang="en">
-      <body
-        style={{
-          margin: 0,
-          fontFamily: "system-ui, sans-serif",
-          background: "#f4f1ec",
-          color: "#222",
-          overflow: open ? "hidden" : "auto",
-        }}
-      >
-        {/* Top Bar */}
-        <header
-          style={{
-            height: 64,
