@@ -2,11 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Artist Portfolio</title>
+  <title>Maneesha Deepak – Artist Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #222;
+    }
+
+    header {
+      padding: 40px 60px;
+      border-bottom: 1px solid #eee;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      margin: 0;
+    }
+
+    header p {
+      margin-top: 8px;
+      color: #666;
+    }
+
+    main {
+      padding: 60px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .art-card {
+      overflow: hidden;
+      border-radius: 12px;
+      background: #f8f8f8;
+    }
+
+    .art-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .art-card .info {
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid #eee;
+      padding: 30px 60px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      header, main, footer {
+        padding: 30px 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Artist Portfolio</h1>
-  <p>This site is being set up. Full portfolio coming soon.</p>
+
+  <header>
+    <h1>Maneesha Deepak</h1>
+    <p>Paintings & Drawings</p>
+  </header>
+
+  <main>
+    <section class="gallery">
+      <div class="art-card">
+        <img src="https://via.placeholder.com/600x800?text=Artwork+1" alt="Artwork 1">
+        <div class="info">Artwork Title 1</div>
+      </div>
+
+      <div class="art-card">
+        <img src="https://via.placeholder.com/600x800?text=Artwork+2" alt="Artwork 2">
+        <div class="info">Artwork Title 2</div>
+      </div>
+
+      <div class="art-card">
+        <img src="https://via.placeholder.com/600x800?text=Artwork+3" alt="Artwork 3">
+        <div class="info">Artwork Title 3</div>
+      </div>
+
+      <div class="art-card">
+        <img src="https://via.placeholder.com/600x800?text=Artwork+4" alt="Artwork 4">
+        <div class="info">Artwork Title 4</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <script>document.write(new Date().getFullYear())</script> Maneesha Deepak
+  </footer>
+
 </body>
 </html>
+``
