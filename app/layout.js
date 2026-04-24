@@ -4,105 +4,101 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function RootLayout({ children }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <html lang="en">
       <body
         style={{
           margin: 0,
-          fontFamily:
-            "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-          backgroundColor: "#f4f1ec",
+          fontFamily: "system-ui, sans-serif",
+          background: "#f4f1ec",
           color: "#222",
+          overflow: open ? "hidden" : "auto",
         }}
       >
-        {/* Top Navigation Bar */}
+        {/* Top Bar */}
         <header
           style={{
+            height: 64,
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
-            padding: "20px 24px",
-            position: "sticky",
-            top: 0,
-            backgroundColor: "#f4f1ec",
-            zIndex: 100,
+            borderBottom: "1px solid #ddd",
           }}
         >
-          <Link
-            href="/"
-            style={{
-              textDecoration: "none",
-              color: "#222",
-              fontWeight: 600,
-            }}
-          >
-            Maneesha Deepak
-          </Link>
-
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setOpen(true)}
             style={{
-              fontSize: "22px",
+              fontSize: 28,
               background: "none",
               border: "none",
               cursor: "pointer",
             }}
-            aria-label="Menu"
           >
             ☰
           </button>
         </header>
 
-        {/* Right‑side Menu */}
-        {menuOpen && (
-          <nav
-            style={{
-              position: "fixed",
-              top: "64px",
-              right: "24px",
-              backgroundColor: "#ffffff",
-              padding: "20px 24px",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
-              zIndex: 101,
-            }}
-          >
-            <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-              <li style={{ marginBottom: "12px" }}>
-                <Link
-                  href="/artwork"
-                  onClick={() => setMenuOpen(false)}
-                  style={{ textDecoration: "none", color: "#222" }}
-                >
-                  Artwork
-                </Link>
-              </li>
+        {/* Slide Menu */}
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            right: 0,
+            height: "100vh",
+            width: 280,
+            background: "#eee",
+            padding: 24,
+            transform: open ? "translateX(0)" : "translateX(100%)",
+            transition: "transform 0.35s ease",
+            zIndex: 100,
+          }}
+        >
+          <div style={{ textAlign: "right" }}>
+            <button
+              onClick={() => setOpen(false)}
+              style={{ fontSize: 24, background: "none", border: "none" }}
+            >
+              ✕
+            </button>
+          </div>
 
-              <li style={{ marginBottom: "12px" }}>
-                <Link
-                  href="/#about"
-                  onClick={() => setMenuOpen(false)}
-                  style={{ textDecoration: "none", color: "#222" }}
-                >
-                  About
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/#contact"
-                  onClick={() => setMenuOpen(false)}
-                  style={{ textDecoration: "none", color: "#222" }}
-                >
-                  Contact
-                </Link>
-              </li>
+          <nav style={{ marginTop: 40 }}>
+            <ul style={{ listStyle: "none", padding: 0 }}>
+              {[
+                { href: "/", label: "Home" },
+                { href: "/my-portfolio", label: "My Portfolio" },
+                { href: "#about", label: "About" },
+                { href: "#contact", label: "Contact" },
+              ].map((i) => (
+                <li key={i.label} style={{ marginBottom: 20 }}>
+                  <Link
+                    href={i.href}
+                    onClick={() => setOpen(false)}
+                    style={{ textDecoration: "none", color: "#222" }}
+                  >
+                    {i.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
+        </div>
+
+        {/* Overlay */}
+        {open && (
+          <div
+            onClick={() => setOpen(false)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.25)",
+              zIndex: 50,
+            }}
+          />
         )}
 
-        {/* Page Content */}
         {children}
       </body>
     </html>
