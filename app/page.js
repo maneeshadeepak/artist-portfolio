@@ -1,49 +1,110 @@
-export default function Page() {
+"use client";
+
+import { useState } from "react";
+import { artworks } from "../lib/artworks";
+
+export default function ArtworkGrid() {
+  const [current, setCurrent] = useState(null);
+
   return (
-    <main>
+    <main style={{ padding: "80px 24px" }}>
+      <h1 style={{ textAlign: "center", marginBottom: 40 }}>
+        My Artwork
+      </h1>
+
+      {/* Grid */}
       <div
         style={{
-          maxWidth: "720px",
+          maxWidth: 1200,
           margin: "0 auto",
-          padding: "100px 20px 140px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+          gap: 20,
         }}
       >
-        <h1 style={{ fontSize: "40px", marginBottom: "6px" }}>
-          Hands on Wood Tiles
-        </h1>
+        {artworks.map((art, index) => (
+          <img
+            key={index}
+            src={art.src}
+            alt={art.title}
+            onClick={() => setCurrent(index)}
+            style={{
+              width: "100%",
+              cursor: "pointer",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+            }}
+          />
+        ))}
+      </div>
 
-        <p
-          style={{
-            fontSize: "15px",
-            color: "#555",
-            marginBottom: "40px",
-          }}
-        >
-          A tactile exploration of pattern, material, and repetition using wood
-          tiles as both surface and structure.
-        </p>
-
-        <img
-          src="https://raw.githubusercontent.com/maneeshadeepak/artist-portfolio/main/hands-on-wood-tiles.png"
-          alt="Hands on Wood Tiles"
-          style={{
-            width: "100%",
-            boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
-          }}
-        />
-
+      {/* Lightbox */}
+      {current !== null && (
         <div
           style={{
-            fontSize: "12px",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "#777",
-            marginTop: "10px",
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.8)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 200,
           }}
         >
-          Mixed Media on Wood, 2024
+          <button
+            onClick={() => setCurrent(null)}
+            style={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+              fontSize: 24,
+              background: "none",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            ✕
+          </button>
+
+          <button
+            onClick={() =>
+              setCurrent((current - 1 + artworks.length) % artworks.length)
+            }
+            style={{
+              position: "absolute",
+              left: 20,
+              fontSize: 32,
+              background: "none",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            ‹
+          </button>
+
+          <img
+            src={artworks[current].src}
+            alt=""
+            style={{ maxHeight: "90vh", maxWidth: "90vw" }}
+          />
+
+          <button
+            onClick={() => setCurrent((current + 1) % artworks.length)}
+            style={{
+              position: "absolute",
+              right: 20,
+              fontSize: 32,
+              background: "none",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            ›
+          </button>
         </div>
-      </div>
+      )}
     </main>
   );
 }
