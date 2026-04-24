@@ -1,32 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-
-export default function RootLayout({ children }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <html lang="en">
-      <body
-        style={{
-          margin: 0,
-          fontFamily: "system-ui, sans-serif",
-          background: "#f4f1ec",
-          color: "#222",
-          overflow: open ? "hidden" : "auto",
-        }}
-      >
-        {/* Top Bar */}
-        <header
-          style={{
-            height: 64,
+0 24px",import Link from "next/link";
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "space-between",
             alignItems: "center",
             borderBottom: "1px solid #ddd",
+            position: "sticky",
+            top: 0,
+            background: "#f4f1ec",
+            zIndex: 20,
           }}
         >
+          <span style={{ fontWeight: 600 }}>Maneesha Deepak</span>
+
           <button
             onClick={() => setOpen(true)}
             style={{
@@ -35,12 +22,13 @@ export default function RootLayout({ children }) {
               border: "none",
               cursor: "pointer",
             }}
+            aria-label="Menu"
           >
             ☰
           </button>
         </header>
 
-        {/* Slide Menu */}
+        {/* Slide‑in Menu */}
         <div
           style={{
             position: "fixed",
@@ -58,7 +46,12 @@ export default function RootLayout({ children }) {
           <div style={{ textAlign: "right" }}>
             <button
               onClick={() => setOpen(false)}
-              style={{ fontSize: 24, background: "none", border: "none" }}
+              style={{
+                fontSize: 24,
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+              }}
             >
               ✕
             </button>
@@ -71,14 +64,14 @@ export default function RootLayout({ children }) {
                 { href: "/my-portfolio", label: "My Portfolio" },
                 { href: "#about", label: "About" },
                 { href: "#contact", label: "Contact" },
-              ].map((i) => (
-                <li key={i.label} style={{ marginBottom: 20 }}>
+              ].map((item) => (
+                <li key={item.label} style={{ marginBottom: 20 }}>
                   <Link
-                    href={i.href}
+                    href={item.href}
                     onClick={() => setOpen(false)}
                     style={{ textDecoration: "none", color: "#222" }}
                   >
-                    {i.label}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -104,3 +97,23 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+``
+
+export default function RootLayout({ children }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <html lang="en">
+      <body
+        style={{
+          margin: 0,
+          fontFamily: "system-ui, sans-serif",
+          background: "#f4f1ec",
+          color: "#222",
+          overflow: open ? "hidden" : "auto",
+        }}
+      >
+        {/* Top Bar */}
+        <header
+          style={{
+            height: 64,
