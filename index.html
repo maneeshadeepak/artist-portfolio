@@ -1,182 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Maneesha Deepak – Artist Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+import { useEffect } from "react";
+import Image from "next/image";
 
-  <style>
-    :root {
-      --bg: #fbfbf9;
-      --text-main: #1a1a1a;
-      --text-muted: #6b6b6b;
-      --divider: #e5e5e5;
+export default function PortfolioApp() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js");
+      });
     }
+  }, []);
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+  return (
+    <div className="min-h-screen bg-[#f4f1ec] text-neutral-900">
+      {/* Header */}
+      <header className="max-w-3xl mx-auto px-6 pt-20 pb-14">
+        <h1 className="text-4xl md:text-5xl font-serif tracking-wide">
+          Maneesha Deepak
+        </h1>
+        <p className="mt-4 text-sm uppercase tracking-widest text-neutral-600">
+          Visual Artist · Paintings & Mixed Media
+        </p>
+      </header>
 
-    /* ---------- Header ---------- */
+      {/* Main Content */}
+      <main className="max-w-3xl mx-auto px-6 pb-24">
+        {/* Project Section */}
+        <section className="mb-28">
+          <h2 className="text-xl font-medium mb-2">
+            Hands on Wood Tiles
+          </h2>
+          <p className="text-sm text-neutral-700 mb-10 leading-relaxed">
+            A tactile exploration of pattern, material, and repetition using
+            wood tiles as both surface and structure. This body of work
+            examines the relationship between hand, material, and rhythm.
+          </p>
 
-    header {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 120px 24px 96px;
-    }
+          {/* Project Images */}
+          <div className="space-y-20">
+            <div>
+              https://raw.githubusercontent.com/maneeshadeepak/artist-portfolio/main/hands-on-wood-tiles.png
+              <p className="mt-3 text-xs uppercase tracking-widest text-neutral-500">
+                Mixed Media on Wood, 2024
+              </p>
+            </div>
 
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 48px;
-      font-weight: 600;
-      margin: 0;
-      letter-spacing: 0.02em;
-    }
+            {/* Placeholder for future project images */}
+            <div>
+              <Image
+                src="https://via.placeholder.com/1200x1500?text=Additional+Project+Image"
+                alt="Additional project work"
+                width={1200}
+                height={1500}
+                className="w-full h-auto shadow-sm"
+              />
+              <p className="mt-3 text-xs uppercase tracking-widest text-neutral-500">
+                Detail view
+              </p>
+            </div>
+          </div>
+        </section>
 
-    header p {
-      margin-top: 16px;
-      font-size: 14px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-    }
+        {/* About Section */}
+        <section id="about" className="mb-24">
+          <h3 className="text-lg font-medium mb-4">About</h3>
+          <p className="text-sm text-neutral-700 leading-relaxed">
+            Maneesha Deepak is a visual artist working with painting and mixed
+            media. Her practice focuses on material exploration, surface, and
+            repetitive gestures, often resulting in meditative, tactile forms.
+          </p>
+        </section>
 
-    /* ---------- Main Content ---------- */
+        {/* Contact Section */}
+        <section id="contact">
+          <h3 className="text-lg font-medium mb-4">Contact</h3>
+          <p className="text-sm text-neutral-700">
+            For exhibitions, collaborations, or commissions, please get in
+            touch via email or social media.
+          </p>
+        </section>
+      </main>
 
-    main {
-      padding: 0 24px 120px;
-    }
-
-    .gallery-intro {
-      max-width: 980px;
-      margin: 0 auto 64px;
-    }
-
-    .gallery-title {
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    .divider {
-      width: 48px;
-      height: 1px;
-      background: var(--divider);
-    }
-
-    /* ---------- Gallery Layout (Lisa Brandon–inspired) ---------- */
-
-    .gallery-wrapper {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    .gallery {
-      column-count: 2;
-      column-gap: 48px;
-    }
-
-    @media (max-width: 900px) {
-      .gallery {
-        column-count: 1;
-      }
-    }
-
-    .art-card {
-      break-inside: avoid;
-      margin-bottom: 72px;
-    }
-
-    .art-card img {
-      width: 100%;
-      display: block;
-      border-radius: 2px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-    }
-
-    .art-card .info {
-      margin-top: 14px;
-      font-size: 13px;
-      color: var(--text-muted);
-      letter-spacing: 0.03em;
-    }
-
-    /* ---------- Footer ---------- */
-
-    footer {
-      border-top: 1px solid var(--divider);
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 56px 24px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    /* ---------- Mobile ---------- */
-
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 34px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <h1>Maneesha Deepak</h1>
-    <p>Paintings & Drawings</p>
-  </header>
-
-  <main>
-
-    <div class="gallery-intro">
-      <div class="gallery-title">Works</div>
-      <div class="divider"></div>
+      {/* Footer */}
+      <footer className="max-w-3xl mx-auto px-6 py-12 text-xs text-neutral-500">
+        © {new Date().getFullYear()} Maneesha Deepak
+      </footer>
     </div>
-
-    <div class="gallery-wrapper">
-      <section class="gallery">
-
-        <div class="art-card">
-        <img src="https://raw.githubusercontent.com/maneeshadeepak/artist-portfolio/main/hands-on-wood-tiles.png" alt="Artwork Title 1">
-        <div class="info">Artwork Title 1</div>
-        </div>
-
-        <div class="art-card">
-          <img src="https://via.placeholder.com/600x750?text=Artwork+2" alt="Artwork 2">
-          <div class="info">Artwork Title 2</div>
-        </div>
-
-        <div class="art-card">
-          <img src="https://via.placeholder.com/600x1000?text=Artwork+3" alt="Artwork 3">
-          <div class="info">Artwork Title 3</div>
-        </div>
-
-        <div class="art-card">
-          <img src="https://via.placeholder.com/600x820?text=Artwork+4" alt="Artwork 4">
-          <div class="info">Artwork Title 4</div>
-        </div>
-
-      </section>
-    </div>
-
-  </main>
-
-  <footer>
-    © <script>document.write(new Date().getFullYear())</script> Maneesha Deepak
-  </footer>
-
-</body>
-</html>
+  );
+}
