@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 
@@ -21,7 +22,7 @@ export default function RootLayout({ children }) {
           color: "#222",
         }}
       >
-        {/* Top Bar */}
+        {/* Top Navigation Bar */}
         <header
           style={{
             display: "flex",
@@ -30,12 +31,19 @@ export default function RootLayout({ children }) {
             padding: "20px 24px",
             position: "sticky",
             top: 0,
-            background: "#f4f1ec",
-            zIndex: 10,
+            backgroundColor: "#f4f1ec",
+            zIndex: 100,
           }}
         >
-          <Link href="/" style={{ textDecoration: "none", color: "#222" }}>
-            <strong>Maneesha Deepak</strong>
+          <Link
+            href="/"
+            style={{
+              textDecoration: "none",
+              color: "#222",
+              fontWeight: 600,
+            }}
+          >
+            Maneesha Deepak
           </Link>
 
           <button
@@ -52,32 +60,54 @@ export default function RootLayout({ children }) {
           </button>
         </header>
 
-        {/* Menu */}
+        {/* Right‑side Menu */}
         {menuOpen && (
           <nav
             style={{
               position: "fixed",
-              top: 64,
-              right: 24,
-              background: "#fff",
+              top: "64px",
+              right: "24px",
+              backgroundColor: "#ffffff",
               padding: "20px 24px",
               boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+              zIndex: 101,
             }}
           >
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
               <li style={{ marginBottom: "12px" }}>
-                /artworkArtwork</Link>
+                <Link
+                  href="/artwork"
+                  style={{ textDecoration: "none", color: "#222" }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Artwork
+                </Link>
               </li>
+
               <li style={{ marginBottom: "12px" }}>
-                /About</Link>
+                <Link
+                  href="/#about"
+                  style={{ textDecoration: "none", color: "#222" }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  About
+                </Link>
               </li>
+
               <li>
-                /Contact</Link>
+                <Link
+                  href="/#contact"
+                  style={{ textDecoration: "none", color: "#222" }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Contact
+                </Link>
               </li>
             </ul>
           </nav>
         )}
 
+        {/* Page Content */}
         {children}
       </body>
     </html>
