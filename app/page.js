@@ -1,23 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { artworks } from "../lib/artworks";
-
-export default function GalleryPage() {
-  const [current, setCurrent] = useState(null);
-
-  return (
-    <main style={{ padding: "80px 24px" }}>
-      <h1 style={{ textAlign: "center", marginBottom: 40 }}>
-        My Artwork
-      </h1>
-
-      {/* Tile Grid */}
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "grid",
+import { useState } from display: "grid",import { useState } from "react";
           gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
           gap: 20,
         }}
@@ -30,7 +13,9 @@ export default function GalleryPage() {
             onClick={() => setCurrent(index)}
             style={{
               width: "100%",
+              height: "auto",
               cursor: "pointer",
+              objectFit: "cover",
               boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
             }}
           />
@@ -86,7 +71,11 @@ export default function GalleryPage() {
           <img
             src={`/artworks/${artworks[current].file}`}
             alt={artworks[current].title}
-            style={{ maxHeight: "90vh", maxWidth: "90vw" }}
+            style={{
+              maxHeight: "90vh",
+              maxWidth: "90vw",
+              objectFit: "contain",
+            }}
           />
 
           <button
@@ -108,3 +97,19 @@ export default function GalleryPage() {
     </main>
   );
 }
+import { artworks } from "../lib/artworks";
+
+export default function GalleryPage() {
+  const [current, setCurrent] = useState(null);
+
+  return (
+    <main style={{ padding: "80px 24px" }}>
+      <h1 style={{ textAlign: "center", marginBottom: 40 }}>
+        My Artwork
+      </h1>
+
+      {/* Tile Grid */}
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
