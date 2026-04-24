@@ -1,7 +1,27 @@
 "use client";
 
 import { useState } from "react";
-0 24px",import Link from "next/link";
+import Link from "next/link";
+
+export default function RootLayout({ children }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <html lang="en">
+      <body
+        style={{
+          margin: 0,
+          fontFamily: "system-ui, sans-serif",
+          background: "#f4f1ec",
+          color: "#222",
+          overflow: open ? "hidden" : "auto",
+        }}
+      >
+        {/* Top Bar */}
+        <header
+          style={{
+            height: 64,
+            padding: "0 24px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -12,7 +32,7 @@ import { useState } from "react";
             zIndex: 20,
           }}
         >
-          <span style={{ fontWeight: 600 }}>Maneesha Deepak</span>
+          <strong>Maneesha Deepak</strong>
 
           <button
             onClick={() => setOpen(true)}
@@ -97,23 +117,3 @@ import { useState } from "react";
     </html>
   );
 }
-``
-
-export default function RootLayout({ children }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <html lang="en">
-      <body
-        style={{
-          margin: 0,
-          fontFamily: "system-ui, sans-serif",
-          background: "#f4f1ec",
-          color: "#222",
-          overflow: open ? "hidden" : "auto",
-        }}
-      >
-        {/* Top Bar */}
-        <header
-          style={{
-            height: 64,
