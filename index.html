@@ -9,69 +9,88 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #222;
-    }
+  :root {
+    --bg: #fdfdfb;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --accent: #bfa88f;
+  }
 
-    header {
-      padding: 40px 60px;
-      border-bottom: 1px solid #eee;
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    padding: 64px 72px 48px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  header p {
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  main {
+    padding: 0 72px 80px;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px 28px;
+  }
+
+  .art-card {
+    background: transparent;
+  }
+
+  .art-card img {
+    width: 100%;
+    display: block;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+  }
+
+  .art-card:hover img {
+    transform: scale(1.02);
+  }
+
+  .art-card .info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  footer {
+    padding: 48px 72px;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid #eaeaea;
+  }
+
+  @media (max-width: 768px) {
+    header, main, footer {
+      padding-left: 22px;
+      padding-right: 22px;
     }
 
     header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 34px;
-      margin: 0;
+      font-size: 32px;
     }
-
-    header p {
-      margin-top: 8px;
-      color: #666;
-    }
-
-    main {
-      padding: 60px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .art-card {
-      overflow: hidden;
-      border-radius: 12px;
-      background: #f8f8f8;
-    }
-
-    .art-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .art-card .info {
-      padding: 14px;
-      font-size: 14px;
-    }
-
-    footer {
-      border-top: 1px solid #eee;
-      padding: 30px 60px;
-      font-size: 13px;
-      color: #777;
-    }
-
-    @media (max-width: 600px) {
-      header, main, footer {
-        padding: 30px 20px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
@@ -111,4 +130,3 @@
 
 </body>
 </html>
-``
