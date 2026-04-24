@@ -5,123 +5,131 @@
   <title>Maneesha Deepak – Artist Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-  :root {
-    --bg: #fbfbf9;
-    --text-main: #1a1a1a;
-    --text-muted: #6b6b6b;
-    --divider: #e5e5e5;
-  }
+    :root {
+      --bg: #fbfbf9;
+      --text-main: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --divider: #e5e5e5;
+    }
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* ---------- Header ---------- */
+    /* ---------- Header ---------- */
 
-  header {
-    padding: 88px 96px 64px;
-  }
-
-  header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: 0.02em;
-  }
-
-  header p {
-    margin-top: 14px;
-    font-size: 14px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-  }
-
-  /* ---------- Gallery Wrapper ---------- */
-
-  main {
-    padding: 0 96px 120px;
-  }
-
-  .gallery-title {
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 48px;
-  }
-
-  .divider {
-    width: 48px;
-    height: 1px;
-    background: var(--divider);
-    margin-bottom: 56px;
-  }
-
-  /* ---------- Gallery Grid ---------- */
-
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 64px 36px;
-  }
-
-  .art-card {
-    background: transparent;
-  }
-
-  .art-card img {
-    width: 100%;
-    display: block;
-    border-radius: 4px;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-  }
-
-  .art-card .info {
-    margin-top: 14px;
-    font-size: 14px;
-    color: var(--text-muted);
-  }
-
-  /* ---------- Footer ---------- */
-
-  footer {
-    border-top: 1px solid var(--divider);
-    padding: 56px 96px;
-    font-size: 13px;
-    color: var(--text-muted);
-  }
-
-  /* ---------- Mobile ---------- */
-
-  @media (max-width: 768px) {
     header {
-      padding: 64px 24px 48px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 120px 24px 96px;
     }
 
     header h1 {
-      font-size: 34px;
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: 0.02em;
     }
+
+    header p {
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    /* ---------- Main Content ---------- */
 
     main {
-      padding: 0 24px 88px;
+      padding: 0 24px 120px;
     }
 
-    footer {
-      padding: 40px 24px;
+    .gallery-intro {
+      max-width: 980px;
+      margin: 0 auto 64px;
     }
-  }
-</style>
+
+    .gallery-title {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    /* ---------- Gallery Layout (Lisa Brandon–inspired) ---------- */
+
+    .gallery-wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .gallery {
+      column-count: 2;
+      column-gap: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .gallery {
+        column-count: 1;
+      }
+    }
+
+    .art-card {
+      break-inside: avoid;
+      margin-bottom: 72px;
+    }
+
+    .art-card img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    .art-card .info {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* ---------- Footer ---------- */
+
+    footer {
+      border-top: 1px solid var(--divider);
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 56px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ---------- Mobile ---------- */
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -132,27 +140,38 @@
   </header>
 
   <main>
-    <section class="gallery">
-      <div class="art-card">
-        <img src="https://via.placeholder.com/600x800?text=Artwork+1" alt="Artwork 1">
-        <div class="info">Artwork Title 1</div>
-      </div>
 
-      <div class="art-card">
-        <img src="https://via.placeholder.com/600x800?text=Artwork+2" alt="Artwork 2">
-        <div class="info">Artwork Title 2</div>
-      </div>
+    <div class="gallery-intro">
+      <div class="gallery-title">Works</div>
+      <div class="divider"></div>
+    </div>
 
-      <div class="art-card">
-        <img src="https://via.placeholder.com/600x800?text=Artwork+3" alt="Artwork 3">
-        <div class="info">Artwork Title 3</div>
-      </div>
+    <div class="gallery-wrapper">
+      <section class="gallery">
 
-      <div class="art-card">
-        <img src="https://via.placeholder.com/600x800?text=Artwork+4" alt="Artwork 4">
-        <div class="info">Artwork Title 4</div>
-      </div>
-    </section>
+        <div class="art-card">
+          <img src="https://via.placeholder.com/600x900?text=Artwork+1" alt="Artwork 1">
+          <div class="info">Artwork Title 1</div>
+        </div>
+
+        <div class="art-card">
+          <img src="https://via.placeholder.com/600x750?text=Artwork+2" alt="Artwork 2">
+          <div class="info">Artwork Title 2</div>
+        </div>
+
+        <div class="art-card">
+          <img src="https://via.placeholder.com/600x1000?text=Artwork+3" alt="Artwork 3">
+          <div class="info">Artwork Title 3</div>
+        </div>
+
+        <div class="art-card">
+          <img src="https://via.placeholder.com/600x820?text=Artwork+4" alt="Artwork 4">
+          <div class="info">Artwork Title 4</div>
+        </div>
+
+      </section>
+    </div>
+
   </main>
 
   <footer>
