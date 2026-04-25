@@ -5,7 +5,7 @@ export default function MyPortfolio() {
   const landscapes = artworks.filter(a => a.orientation === 'landscape');
 
   return (
-    <main style={{ padding: '80px 24px', maxWidth: 1200, margin: '0 auto' }}>
+    <main style={{ padding: '64px 16px', maxWidth: 1200, margin: '0 auto' }}>
       {landscapes.map((art, i) => (
         <div key={`land-${i}`} className="single landscape">
           <img src={`/artworks/${art.file}`} />
@@ -29,11 +29,28 @@ export default function MyPortfolio() {
       </div>
 
       <style>{`
-        .single.landscape { width: 100%; padding: 12px; margin-bottom: 40px; border: 1px solid rgba(0,0,0,0.15); }
+        .single.landscape {
+          border: 1px solid rgba(0,0,0,0.15);
+          padding: 12px;
+          margin-bottom: 40px;
+        }
         .single.landscape img { width: 100%; height: auto; }
-        .portraitRow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .tile.portrait { background: transparent; padding: 12px; border: 1px solid rgba(0,0,0,0.15); }
-        .tile.portrait img { width: 100%; height: 420px; object-fit: contain; }
+
+        .portraitRow {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+        }
+        @media (max-width: 800px) {
+          .portraitRow { grid-template-columns: 1fr; }
+        }
+
+        .tile.portrait {
+          border: 1px solid rgba(0,0,0,0.15);
+          padding: 12px;
+        }
+        .tile.portrait img { width: 100%; height: auto; object-fit: contain; }
+
         .meta { margin-top: 8px; }
         .title { font-weight: 600; }
         .desc { font-size: 13px; color: #555; }
