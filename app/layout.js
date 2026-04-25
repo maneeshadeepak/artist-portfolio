@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
           <button onClick={() => setOpen(true)} style={{ fontSize: 28, background: 'none', border: 'none', cursor: 'pointer' }}>☰</button>
         </header>
 
-        <aside style={{ position: 'fixed', top: 0, right: 0, width: 320, height: '100vh', padding: 32, background: '#fff', transform: open ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.3s ease', zIndex: 100 }}>
+        <aside style={{ position: 'fixed', top: 0, right: 0, width: 320, height: '100vh', padding: 32, background: '#efefec', transform: open ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.3s ease', zIndex: 100 }}>
           <button onClick={() => setOpen(false)} style={{ fontSize: 24, background: 'none', border: 'none', float: 'right' }}>✕</button>
           <nav style={{ marginTop: 80 }}>
             <ul style={{ listStyle: 'none', padding: 0 }}>
