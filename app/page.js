@@ -41,6 +41,24 @@ export default function GalleryPage() {
         </div>
       )}
 
+      {/* About section */}
+      <section
+        id="about"
+        style={{
+          maxWidth: 720,
+          margin: '140px auto 120px',
+          padding: '0 24px',
+        }}
+      >
+        <h2 style={{ marginBottom: 16, fontSize: 20 }}>About</h2>
+        <p style={{ lineHeight: 1.7, fontSize: 15 }}>
+          Maneesha Deepak is a visual artist working with painting and mixed media. 
+          With everything I do in life I hope to be passionate, and compassionate. 
+          I believe that the first step toward any kind of improvement, is caring about the people around you. 
+          I create and sell digital art. As well as taking commissions for original pieces of artwork unique to you.
+        </p>
+      </section>
+
       <style>{`
         .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; grid-auto-flow: row dense; }
         .tile { background: transparent; padding: 12px; cursor: pointer; border: 1px solid rgba(0,0,0,0.15); border-radius: 2px; }
@@ -53,16 +71,7 @@ export default function GalleryPage() {
         .title { font-weight: 600; }
         .desc { font-size: 13px; color: #555; }
 
-        .lightbox {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 200;
-      }
-
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 200; }
         .lightbox img { max-width: 90%; max-height: 90%; }
         .close { position: absolute; top: 20px; right: 20px; font-size: 24px; color: #fff; background: none; border: none; }
         .prev { position: absolute; left: 30px; font-size: 40px; color: #fff; background: none; border: none; }
