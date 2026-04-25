@@ -1,6 +1,23 @@
 "use client";
 
-import { useState } from display: "grid",import { useState } from "react";
+import { useState } from "react";
+import { artworks } from "../lib/artworks";
+
+export default function GalleryPage() {
+  const [current, setCurrent] = useState(null);
+
+  return (
+    <main style={{ padding: "80px 24px" }}>
+      <h1 style={{ textAlign: "center", marginBottom: 40 }}>
+        My Artwork
+      </h1>
+
+      {/* Tile Grid */}
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
           gap: 20,
         }}
@@ -35,6 +52,7 @@ import { useState } from display: "grid",import { useState } from "react";
             zIndex: 200,
           }}
         >
+          {/* Close */}
           <button
             onClick={() => setCurrent(null)}
             style={{
@@ -51,6 +69,7 @@ import { useState } from display: "grid",import { useState } from "react";
             ✕
           </button>
 
+          {/* Prev */}
           <button
             onClick={() =>
               setCurrent((current - 1 + artworks.length) % artworks.length)
@@ -68,16 +87,17 @@ import { useState } from display: "grid",import { useState } from "react";
             ‹
           </button>
 
+          {/* Image */}
           <img
             src={`/artworks/${artworks[current].file}`}
             alt={artworks[current].title}
             style={{
-              maxHeight: "90vh",
-              maxWidth: "90vw",
-              objectFit: "contain",
+              maxWidth: "90%",
+              maxHeight: "90%",
             }}
           />
 
+          {/* Next */}
           <button
             onClick={() => setCurrent((current + 1) % artworks.length)}
             style={{
@@ -97,19 +117,3 @@ import { useState } from display: "grid",import { useState } from "react";
     </main>
   );
 }
-import { artworks } from "../lib/artworks";
-
-export default function GalleryPage() {
-  const [current, setCurrent] = useState(null);
-
-  return (
-    <main style={{ padding: "80px 24px" }}>
-      <h1 style={{ textAlign: "center", marginBottom: 40 }}>
-        My Artwork
-      </h1>
-
-      {/* Tile Grid */}
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
