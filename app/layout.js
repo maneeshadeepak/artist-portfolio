@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
           background: '#f4f1ec',
           color: '#222',
           scrollBehavior: 'smooth',
-          overflow: open ? 'hidden' : 'auto',
+          overflow: open ? 'hidden' : 'auto'
         }}
       >
         <header
@@ -22,12 +22,12 @@ export default function RootLayout({ children }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '20px 24px',
+            padding: '16px 20px',
             borderBottom: '1px solid #ddd',
             position: 'sticky',
             top: 0,
             background: '#f4f1ec',
-            zIndex: 50,
+            zIndex: 50
           }}
         >
           <strong>Maneesha Deepak</strong>
@@ -44,14 +44,14 @@ export default function RootLayout({ children }) {
             position: 'fixed',
             top: 0,
             right: 0,
-            width: 320,
-            height: '100vh',
-            padding: 32,
+            width: 'min(85vw, 320px)',
+            height: '100dvh',
+            padding: 24,
             background: '#ebe7df',
             borderLeft: '1px solid rgba(0,0,0,0.15)',
             transform: open ? 'translateX(0)' : 'translateX(100%)',
             transition: 'transform 0.3s ease',
-            zIndex: 100,
+            zIndex: 100
           }}
         >
           <button
@@ -61,22 +61,16 @@ export default function RootLayout({ children }) {
             ✕
           </button>
 
-          <nav style={{ marginTop: 80 }}>
+          <nav style={{ marginTop: 60 }}>
             <ul style={{ listStyle: 'none', padding: 0 }}>
               <li style={{ marginBottom: 20 }}>
-                <Link href="/" onClick={() => setOpen(false)}>
-                  Home
-                </Link>
+                <Link href="/" onClick={() => setOpen(false)}>Home</Link>
               </li>
               <li style={{ marginBottom: 20 }}>
-                <Link href="/#about" onClick={() => setOpen(false)}>
-                  About
-                </Link>
+                <Link href="/#about" onClick={() => setOpen(false)}>About</Link>
               </li>
               <li style={{ marginBottom: 20 }}>
-                <Link href="/my-portfolio" onClick={() => setOpen(false)}>
-                  My Portfolio
-                </Link>
+                <Link href="/my-portfolio" onClick={() => setOpen(false)}>My Portfolio</Link>
               </li>
             </ul>
           </nav>
