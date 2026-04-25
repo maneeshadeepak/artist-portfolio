@@ -53,7 +53,16 @@ export default function GalleryPage() {
         .title { font-weight: 600; }
         .desc { font-size: 13px; color: #555; }
 
-        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justifyContent: center; z-index: 200; }
+        .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 200;
+      }
+
         .lightbox img { max-width: 90%; max-height: 90%; }
         .close { position: absolute; top: 20px; right: 20px; font-size: 24px; color: #fff; background: none; border: none; }
         .prev { position: absolute; left: 30px; font-size: 40px; color: #fff; background: none; border: none; }
