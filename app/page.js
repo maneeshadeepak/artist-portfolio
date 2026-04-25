@@ -17,18 +17,16 @@ export default function GalleryPage() {
   }, [current]);
 
   return (
-    <main style={{ padding: '100px 24px' }}>
-      <div style={{ maxWidth: 1400, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, gridAutoFlow: 'row dense' }}>
-        {artworks.map((art, idx) => {
+    <main style={{ padding: '80px 24px', maxWidth: 1500, margin: '0 auto' }}>
+      <div className="grid">
+        {artworks.map((art, i) => {
           const isLandscape = art.orientation === 'landscape';
           return (
-            <div key={idx} onClick={() => setCurrent(idx)} style={{ gridColumn: isLandscape ? 'span 2' : 'span 1', background: '#fff', padding: 12, cursor: 'pointer' }}>
-              <div style={{ aspectRatio: isLandscape ? '16 / 9' : '3 / 4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img src={`/artworks/${art.file}`} alt={art.title} style={{ maxWidth: '100%', maxHeight: '100%' }} />
-              </div>
-              <div style={{ marginTop: 8 }}>
-                <div style={{ fontWeight: 600 }}>{art.title}</div>
-                <div style={{ fontSize: 13, color: '#555' }}>{art.description}</div>
+            <div key={i} onClick={() => setCurrent(i)} className={isLandscape ? 'tile landscape' : 'tile portrait'}>
+              <img src={`/artworks/${art.file}`} alt={art.title} />
+              <div className="meta">
+                <div className="title">{art.title}</div>
+                <div className="desc">{art.description}</div>
               </div>
             </div>
           );
@@ -36,13 +34,45 @@ export default function GalleryPage() {
       </div>
 
       {current !== null && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}>
-          <button onClick={() => setCurrent(null)} style={{ position: 'absolute', top: 20, right: 20, color: '#fff', fontSize: 24 }}>✕</button>
-          <button onClick={() => setCurrent((current - 1 + artworks.length) % artworks.length)} style={{ position: 'absolute', left: 20, color: '#fff', fontSize: 40 }}>‹</button>
-          <img src={`/artworks/${artworks[current].file}`} style={{ maxWidth: '90%', maxHeight: '90%' }} />
-          <button onClick={() => setCurrent((current + 1) % artworks.length)} style={{ position: 'absolute', right: 20, color: '#fff', fontSize: 40 }}>›</button>
+        <div className="lightbox">
+          <button className="close" onClick={() => setCurrent(null)}>✕</button>
+          <button className="prev" onClick={() => setCurrent((current - 1 + artworks.length) % artworks.length)}>‹</button>
+          <img src={`/artworks/${artworks[current].file}`} />
+          <button className="next" onClick={() => setCurrent((current + 1) % artworks.length)}>›</button>
         </div>
       )}
+
+      <style>{`
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+        @media (max-width: 1200px) {
+          .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 900px) {
+          .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .tile {
+          background: #fff;
+          padding: 12px;
+          cursor: pointer;
+        }
+        .portrait img { width: 100%; height: 420px; object-fit: contain; }
+        .landscape img { width: 100%; height: 260px; object-fit: contain; }
+        .meta { margin-top: 8px; }
+        .title { font-weight: 600; }
+        .desc { font-size: 13px; color: #555; }
+        .lightbox {
+          position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+          display: flex; align-items: center; justify-content: center; z-index: 200;
+        }
+        .lightbox img { max-width: 90%; max-height: 90%; }
+        .close { position: absolute; top: 20px; right: 20px; font-size: 24px; color: #fff; background: none; border: none; }
+        .prev { position: absolute; left: 20px; font-size: 40px; color: #fff; background: none; border: none; }
+        .next { position: absolute; right: 20px; font-size: 40px; color: #fff; background: none; border: none; }
+      `}</style>
     </main>
   );
 }
