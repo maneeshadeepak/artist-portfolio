@@ -21,7 +21,7 @@ export default function GalleryPage() {
       <div className="grid">
         {artworks.map((art, i) => (
           <div key={i} className={`tile ${art.orientation}`} onClick={() => setCurrent(i)}>
-            <div className="imageWrap">
+            <div className="imgWrap">
               <img src={`/artworks/${art.file}`} alt={art.title} />
             </div>
             <div className="meta">
@@ -42,32 +42,25 @@ export default function GalleryPage() {
       )}
 
       <style>{`
-        .grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
-          grid-auto-flow: row dense;
-        }
-        @media (max-width: 1200px) {.grid { grid-template-columns: repeat(3,1fr); }}
-        @media (max-width: 900px) {.grid { grid-template-columns: repeat(2,1fr); }}
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; grid-auto-flow: row dense; }
+        @media (max-width: 1200px) { .grid { grid-template-columns: repeat(3,1fr); } }
+        @media (max-width: 900px) { .grid { grid-template-columns: repeat(2,1fr); } }
 
         .tile { background: #fff; padding: 12px; cursor: pointer; }
         .tile.landscape { grid-column: span 2; }
-
-        .tile.portrait .imageWrap { height: 420px; }
-        .tile.landscape .imageWrap { height: 260px; }
-        .imageWrap { display: flex; align-items: center; justify-content: center; }
+        .imgWrap { display: flex; align-items: center; justify-content: center; }
+        .tile.portrait .imgWrap { height: 420px; }
+        .tile.landscape .imgWrap { height: 340px; }
         img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        .meta { margin-top: 8px; }
+        .meta { margin-top: 10px; }
         .title { font-weight: 600; }
         .desc { font-size: 13px; color: #555; }
 
         .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 200; }
         .lightbox img { max-width: 90%; max-height: 90%; }
         .close { position: absolute; top: 20px; right: 20px; font-size: 24px; color: #fff; background: none; border: none; }
-        .prev { position: absolute; left: 20px; font-size: 40px; color: #fff; background: none; border: none; }
-        .next { position: absolute; right: 20px; font-size: 40px; color: #fff; background: none; border: none; }
+        .prev { position: absolute; left: 30px; font-size: 40px; color: #fff; background: none; border: none; }
+        .next { position: absolute; right: 30px; font-size: 40px; color: #fff; background: none; border: none; }
       `}</style>
     </main>
   );
