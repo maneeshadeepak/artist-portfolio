@@ -6,8 +6,8 @@ export default function GalleryPage() {
   const [current, setCurrent] = useState(null);
 
   useEffect(() => {
+    if (current === null) return;
     function onKey(e) {
-      if (current === null) return;
       if (e.key === 'Escape') setCurrent(null);
       if (e.key === 'ArrowRight') setCurrent((current + 1) % artworks.length);
       if (e.key === 'ArrowLeft') setCurrent((current - 1 + artworks.length) % artworks.length);
@@ -17,7 +17,7 @@ export default function GalleryPage() {
   }, [current]);
 
   return (
-    <main style={{ padding: '80px 24px', maxWidth: 1600, margin: '0 auto' }}>
+    <main style={{ padding: '64px 16px', maxWidth: 1600, margin: '0 auto' }}>
       <div className="grid">
         {artworks.map((art, i) => (
           <div key={i} className={`tile ${art.orientation}`} onClick={() => setCurrent(i)}>
@@ -41,17 +41,9 @@ export default function GalleryPage() {
         </div>
       )}
 
-      {/* About section */}
-      <section
-        id="about"
-        style={{
-          maxWidth: 720,
-          margin: '140px auto 120px',
-          padding: '0 24px',
-        }}
-      >
-        <h2 style={{ marginBottom: 16, fontSize: 20 }}>About</h2>
-        <p style={{ lineHeight: 1.7, fontSize: 15 }}>
+      <section id="about" style={{ maxWidth: 720, margin: '120px auto 96px', padding: '0 16px' }}>
+        <h2 style={{ fontSize: 18, marginBottom: 14 }}>About</h2>
+        <p style={{ fontSize: 15, lineHeight: 1.7 }}>
           Maneesha Deepak is a visual artist working with painting and mixed media. 
           With everything I do in life I hope to be passionate, and compassionate. 
           I believe that the first step toward any kind of improvement, is caring about the people around you. 
@@ -60,22 +52,72 @@ export default function GalleryPage() {
       </section>
 
       <style>{`
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; grid-auto-flow: row dense; }
-        .tile { background: transparent; padding: 12px; cursor: pointer; border: 1px solid rgba(0,0,0,0.15); border-radius: 2px; }
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+          grid-auto-flow: row dense;
+        }
+        @media (max-width: 1200px) {
+          .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 800px) {
+          .grid { grid-template-columns: 1fr; }
+        }
+
+        .tile {
+          background: transparent;
+          padding: 12px;
+          border: 1px solid rgba(0,0,0,0.15);
+          border-radius: 2px;
+        }
         .tile.landscape { grid-column: span 2; }
-        .imgWrap { display: flex; align-items: center; justify-content: center; }
+        @media (max-width: 800px) {
+          .tile.landscape { grid-column: span 1; }
+        }
+
+        .imgWrap { display: flex; justify-content: center; align-items: center; }
         .tile.portrait .imgWrap { height: 420px; }
-        .tile.landscape .imgWrap { height: 340px; }
+        .tile.landscape .imgWrap { height: 320px; }
+        @media (max-width: 800px) {
+          .tile.portrait .imgWrap,
+          .tile.landscape .imgWrap { height: auto; }
+        }
         img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
         .meta { margin-top: 10px; }
         .title { font-weight: 600; }
         .desc { font-size: 13px; color: #555; }
 
-        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 200; }
-        .lightbox img { max-width: 90%; max-height: 90%; }
-        .close { position: absolute; top: 20px; right: 20px; font-size: 24px; color: #fff; background: none; border: none; }
-        .prev { position: absolute; left: 30px; font-size: 40px; color: #fff; background: none; border: none; }
-        .next { position: absolute; right: 30px; font-size: 40px; color: #fff; background: none; border: none; }
+        .lightbox {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.9);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 200;
+        }
+        .lightbox img { max-width: 90vw; max-height: 90vh; }
+        .close {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          font-size: 24px;
+          color: #fff;
+          background: none;
+          border: none;
+        }
+        .prev, .next {
+          position: absolute;
+          font-size: 36px;
+          color: #fff;
+          background: none;
+          border: none;
+          padding: 12px;
+        }
+        .prev { left: 8px; }
+        .next { right: 8px; }
       `}</style>
     </main>
   );
