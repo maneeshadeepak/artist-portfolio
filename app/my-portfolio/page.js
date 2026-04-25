@@ -29,7 +29,7 @@ export default function MyPortfolio() {
       </div>
 
       <style>{`
-        .single.landscape { width: 100%; background: #fff; padding: 12px; margin-bottom: 40px; }
+        .single.landscape { width: 100%; background: transparent; padding: 12px; margin-bottom: 40px; }
         .single.landscape img { width: 100%; height: auto; }
 
         .portraitRow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
