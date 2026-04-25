@@ -8,6 +8,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body style={{ margin: 0, fontFamily: 'system-ui, sans-serif', background: '#f4f1ec', color: '#222', overflow: open ? 'hidden' : 'auto' }}>
+
         <header style={{ position: 'sticky', top: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px', borderBottom: '1px solid #ddd', background: '#f4f1ec', zIndex: 20 }}>
           <strong>Maneesha Deepak</strong>
           <button onClick={() => setOpen(true)} style={{ fontSize: 28, background: 'none', border: 'none', cursor: 'pointer' }}>☰</button>
