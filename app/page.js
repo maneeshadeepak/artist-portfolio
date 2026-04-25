@@ -46,7 +46,7 @@ export default function GalleryPage() {
         @media (max-width: 1200px) { .grid { grid-template-columns: repeat(3,1fr); } }
         @media (max-width: 900px) { .grid { grid-template-columns: repeat(2,1fr); } }
 
-        .tile { background: #fff; padding: 12px; cursor: pointer; }
+        .tile { background: transparent; padding: 12px; cursor: pointer; }
         .tile.landscape { grid-column: span 2; }
         .imgWrap { display: flex; align-items: center; justify-content: center; }
         .tile.portrait .imgWrap { height: 420px; }
